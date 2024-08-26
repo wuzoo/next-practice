@@ -4,12 +4,21 @@ import { getMeal } from "@/lib/meals";
 import { notFound } from "next/navigation";
 import classes from "./page.module.css";
 
-const MealDetail = ({ params }) => {
+export const generateMetadata = async ({ params }) => {
   const meal = getMeal(params.mealSlug);
 
   if (!meal) {
     notFound();
   }
+
+  return {
+    title: meal.title,
+    description: meal.summary,
+  };
+};
+
+const MealDetail = ({ params }) => {
+  generateMetadata(params);
 
   meal.instructions = meal.instructions.replace(/\n/g, "<br />");
 

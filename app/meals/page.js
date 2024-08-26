@@ -5,6 +5,11 @@ import { getMeals } from "@/lib/meals";
 import { Suspense } from "react";
 import classes from "./page.module.css";
 
+export const metadata = {
+  title: "All Meals",
+  description: "Browse the delicious meals shared by our variant.",
+};
+
 const Meals = async () => {
   const meals = await getMeals();
 
